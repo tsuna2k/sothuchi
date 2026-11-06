@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Quay lại app Sổ Tài Chính</title>
+<style>
+  body{font-family:system-ui,sans-serif;background:#000;color:#e7eaf0;text-align:center;padding:48px 20px}
+  a.btn{display:inline-block;margin-top:18px;padding:14px 24px;background:#0f766e;color:#fff;border-radius:12px;text-decoration:none;font-weight:700;font-size:16px}
+  p{color:#9aa3b0;font-size:14px;line-height:1.5}
+</style>
+</head>
+<body>
+<h2>Đang mở app Sổ Tài Chính…</h2>
+<a id="go" class="btn" href="#">Mở app Sổ Tài Chính</a>
+<p id="msg">Nếu app không tự mở, hãy bấm nút phía trên.</p>
+<script>
+  // Nếu app của bạn có package name khác, sửa PACKAGE bên dưới cho khớp
+  var PACKAGE = 'com.sotaichinh.app';
+  var q = location.search || '';
+  var intentUrl = 'intent://oauth' + q + '#Intent;scheme=sotaichinh;package=' + PACKAGE + ';end';
+  document.getElementById('go').href = intentUrl;
+  if (/Android/i.test(navigator.userAgent)) {
+    location.replace(intentUrl);
+  } else {
+    document.getElementById('msg').textContent = 'Trang này chỉ dùng để quay lại app trên điện thoại Android.';
+  }
+</script>
+</body>
+</html>
